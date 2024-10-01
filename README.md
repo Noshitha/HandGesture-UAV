@@ -1,5 +1,6 @@
-**Gesture-Controlled UAV using ESP32 S3 and IMU Sensor**
-_**Overview**_
+**Gesture-Controlled UAV using ESP32 S3 and IMU Sensor:**
+
+_**Overview:-**_
 This project enables real-time control of an Unmanned Aerial Vehicle (UAV) using hand gestures. The system utilizes the ESP32 S3 microcontroller and an MPU6050 IMU sensor to capture motion data from the user’s hand, process the data, and send corresponding commands to the UAV via Bluetooth.
 
 <img width="350" alt="image" src="https://github.com/user-attachments/assets/803a1a46-4306-4d3b-81ae-88c190250f2f">
