@@ -1,25 +1,45 @@
+**Gesture-Controlled UAV using ESP32 S3 and IMU Sensor**
+_**Overview**_
+This project enables real-time control of an Unmanned Aerial Vehicle (UAV) using hand gestures. The system utilizes the ESP32 S3 microcontroller and an MPU6050 IMU sensor to capture motion data from the user’s hand, process the data, and send corresponding commands to the UAV via Bluetooth.
+
 <img width="350" alt="image" src="https://github.com/user-attachments/assets/803a1a46-4306-4d3b-81ae-88c190250f2f">
 
-**Collect Data from IMU Sensor (MPU6050):**
-The Inertial Measurement Unit (IMU) sensor, MPU6050, captures real-time motion data from the user’s hand. This data includes information about acceleration (from the accelerometer) and angular velocity (from the gyroscope). This raw data is crucial for identifying the hand gestures made by the user.
+_**Process Flow**_
 
-**Pre-process Data:**
-Once the motion data is captured, it goes through a pre-processing step. Fast Fourier Transform (FFT) is applied to clean up the noise in the data and extract relevant features, such as frequency components of the gesture movements. Pre-processing is important for improving the accuracy of the gesture recognition model by providing cleaner data inputs.
+_1. Collect Data from IMU Sensor (MPU6050)_
+The MPU6050 IMU sensor captures real-time motion data from the user’s hand. This data includes:
+Acceleration (via accelerometer)
+Angular velocity (via gyroscope)
+These measurements are essential for identifying the user’s hand gestures.
 
-**Feed Pre-processed Data to ML Model:**
-The pre-processed data is then fed into a machine learning (ML) model, which has been trained to recognize specific hand gestures like UP, DOWN, LEFT, and RIGHT. This model analyzes the incoming data and classifies it based on the patterns it has learned during the training phase.
+_2. Pre-process Data_
+Once collected, the motion data undergoes a pre-processing step:
 
-**Gesture Prediction from ML Model:**
-The ML model outputs a prediction, identifying the specific gesture performed by the user. The recognized gesture is converted into a command that the UAV can understand, such as move up, down, or rotate.
+Fast Fourier Transform (FFT) is applied to reduce noise and extract relevant features such as frequency components.
+This step improves gesture recognition accuracy by providing cleaner, more meaningful data to the machine learning model.
 
-**Connect to UAV using Bluetooth:**
-The system establishes a Bluetooth connection with the UAV (Unmanned Aerial Vehicle) to transmit the recognized gesture in real time. Bluetooth is chosen for its low latency and ease of integration with mobile systems.
+_3. Feed Pre-processed Data to ML Model_
+The cleaned, pre-processed data is fed into a pre-trained machine learning (ML) model. This model is designed to recognize specific gestures.
+The model analyzes the data and classifies the hand gestures based on patterns learned during training.
 
-**Send Predicted Gesture to UAV:**
-The predicted gesture is sent to the UAV via the Bluetooth connection. The UAV’s flight controller receives this command and prepares to execute the corresponding action.
+_4. Gesture Prediction from ML Model_
+The ML model outputs a prediction of the gesture performed by the user. This prediction is converted into a command that can be understood by the UAV.
 
-**UAV Executes the Command:**
-Based on the gesture received, the UAV performs the corresponding flight maneuver. For example, an UP gesture may cause the UAV to ascend, while a LEFT gesture could trigger a leftward movement. This gesture-based control provides an intuitive and interactive method for operating the UAV.
+_5. Connect to UAV using Bluetooth_
+A Bluetooth connection is established between the ESP32 S3 and the UAV. Bluetooth is used due to its low latency and ease of integration for real-time control applications.
 
-**End:**
-The process can repeat as new gestures are made, allowing for continuous real-time control of the UAV. Once the task is completed, the system can be turned off or reset for further operation.
+_6. Send Predicted Gesture to UAV_
+The predicted gesture is transmitted via the Bluetooth connection to the UAV. The UAV’s flight controller receives the command and prepares to execute the corresponding action.
+
+_7. UAV Executes the Command_
+The UAV performs the maneuver based on the recognized gesture. For example:
+An UP gesture may trigger the UAV to ascend.
+A LEFT gesture may cause the UAV to move left.
+This gesture-based interaction allows for intuitive, real-time control of the UAV.
+
+_8. Repeat or End_
+The process can be repeated continuously as new gestures are performed. The system can also be reset or turned off once the desired operation is complete.
+
+**_Conclusion_**
+This project showcases the use of embedded systems, sensor data processing, and machine learning to develop a gesture-controlled UAV. By using the ESP32 S3 and MPU6050 IMU sensor, we enable real-time, gesture-based control, providing an intuitive interface for UAV operation.
+
